@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "description": "A REST API built with Node.js, Express, and MongoDB.",
-  "main": "src/server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "node --test"
   },
   "engines": {
