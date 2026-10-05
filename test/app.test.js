@@ -1,7 +1,7 @@
 const assert = require('node:assert/strict');
 const test = require('node:test');
 const request = require('supertest');
-const app = require('../src/app');
+const app = require('../src/server');
 
 test('GET /health returns the API status', async () => {
   const response = await request(app).get('/health');

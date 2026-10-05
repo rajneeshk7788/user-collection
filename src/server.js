@@ -1,7 +1,27 @@
 require('dotenv').config();
 
+const express = require('express');
 const mongoose = require('mongoose');
-const app = require('./app');
+const taskRoutes = require('./routes/taskRoutes');
+const userRoutes = require('./routes/userRoutes');
+const errorHandler = require('./middleware/errorHandler');
+
+const app = express();
+
+app.use(express.json({ limit: '10kb' }));
+
+app.get('/health', (request, response) => {
+  response.status(200).json({ status: 'ok' });
+});
+
+app.use('/api/tasks', taskRoutes);
+app.use('/api/users', userRoutes);
+
+app.use((request, response) => {
+  response.status(404).json({ error: 'Route not found' });
+});
+
+app.use(errorHandler);
 
 const port = Number(process.env.PORT) || 3000;
 const mongoUri = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/tasks_api';
@@ -18,4 +38,8 @@ async function start() {
   }
 }
 
-start();
+if (require.main === module) {
+  start();
+}
+
+module.exports = app;

@@ -14,6 +14,18 @@ npm run dev
 
 Set `MONGO_URI` in `.env` to your MongoDB connection string. The default is `mongodb://127.0.0.1:27017/tasks_api`.
 
+## Deploying to Render
+
+The repository root contains `package.json`; the API setup and startup logic
+are in `src/server.js`. In Render, leave **Root Directory** blank (the
+repository root). Use `npm install` as the build command and `npm start` as
+the start command. The included `render.yaml` configures these settings and
+uses `/health` for health checks.
+
+Set `MONGO_URI` in the Render service's environment variables to a reachable
+MongoDB connection string, such as one from MongoDB Atlas. The local `.env`
+file is not deployed.
+
 ## Endpoints
 
 Successful resource responses use a `data` property, except for delete requests, which return `204 No Content`.
