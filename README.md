@@ -12,19 +12,21 @@ Copy-Item .env.example .env
 npm run dev
 ```
 
-Set `MONGO_URI` in `.env` to your MongoDB connection string. The default is `mongodb://127.0.0.1:27017/tasks_api`.
+Set `MONGO_URI` in `.env` to your MongoDB connection string. The default is `mongodb://127.0.0.1:27017/tasks_api` for a local MongoDB instance. For MongoDB Atlas, use its connection string with your database username and password in the URI, as shown in `.env.example`. URL-encode special characters in the username or password (for example, `@` as `%40`).
 
 ## Deploying to Render
 
-The repository root contains `package.json`; the API setup and startup logic
-are in `src/server.js`. In Render, leave **Root Directory** blank (the
+The repository root contains both `package.json` and `server.js`; the API
+routes, models, and middleware are in `src/`. In Render, leave **Root Directory** blank (the
 repository root). Use `npm install` as the build command and `npm start` as
 the start command. The included `render.yaml` configures these settings and
 uses `/health` for health checks.
 
 Set `MONGO_URI` in the Render service's environment variables to a reachable
-MongoDB connection string, such as one from MongoDB Atlas. The local `.env`
-file is not deployed.
+MongoDB connection string, such as one from MongoDB Atlas. The URI includes
+the database username and password; URL-encode special characters in either
+credential. Do not commit real credentials to `.env.example` or source control.
+The local `.env` file is not deployed.
 
 ## Endpoints
 

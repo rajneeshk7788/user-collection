@@ -2,9 +2,9 @@ require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
-const taskRoutes = require('./routes/taskRoutes');
-const userRoutes = require('./routes/userRoutes');
-const errorHandler = require('./middleware/errorHandler');
+const taskRoutes = require('./src/routes/taskRoutes');
+const userRoutes = require('./src/routes/userRoutes');
+const errorHandler = require('./src/middleware/errorHandler');
 
 const app = express();
 
